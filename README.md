@@ -1,6 +1,6 @@
 # build-info-injector
 
-一个轻量级的 npm 插件，可在构建时自动向所有 HTML 文件注入版本号、构建时间戳和项目名。支持 Webpack 4/5、Vite 和 Rollup。
+一个零依赖、可自动在构建时为所有 HTML 文件注入版本号、构建时间和项目名信息的 npm 插件。兼容 Webpack 4/5、Vite 及 Rollup，配置简单，开箱即用。
 
 ## 安装
 
