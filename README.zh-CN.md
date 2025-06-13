@@ -1,10 +1,6 @@
-[English](README.en.md) | [中文](README.zh-CN.md)
+# build-info-injector
 
----
-
-A zero-dependency npm plugin that automatically injects version, build time, and project name information into all HTML files during build. Compatible with Webpack 4/5, Vite, and Rollup. Simple to configure and ready to use out of the box.
-
-For detailed documentation, please refer to the language links above.
+一个零依赖、可自动在构建时为所有 HTML 文件注入版本号、构建时间和项目名信息的 npm 插件。兼容 Webpack 4/5、Vite 及 Rollup，配置简单，开箱即用。
 
 ## 安装
 
@@ -15,6 +11,7 @@ npm install build-info-injector --save-dev
 ## 用法
 
 ### Webpack 4/5
+需配合 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 使用：
 
 ```js
 const { BuildInfoInjectorWebpackPlugin } = require('build-info-injector');
@@ -24,7 +21,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new BuildInfoInjectorWebpackPlugin({
-      version: '1.0.0',
+      version: require('./package.json').version,
       projectName: '你的项目名',
       // buildTime 可不传，默认当前时间
     })

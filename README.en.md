@@ -1,20 +1,17 @@
-[English](README.en.md) | [中文](README.zh-CN.md)
-
----
+# build-info-injector
 
 A zero-dependency npm plugin that automatically injects version, build time, and project name information into all HTML files during build. Compatible with Webpack 4/5, Vite, and Rollup. Simple to configure and ready to use out of the box.
 
-For detailed documentation, please refer to the language links above.
-
-## 安装
+## Installation
 
 ```bash
 npm install build-info-injector --save-dev
 ```
 
-## 用法
+## Usage
 
 ### Webpack 4/5
+(Use with [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin))
 
 ```js
 const { BuildInfoInjectorWebpackPlugin } = require('build-info-injector');
@@ -24,9 +21,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new BuildInfoInjectorWebpackPlugin({
-      version: '1.0.0',
-      projectName: '你的项目名',
-      // buildTime 可不传，默认当前时间
+      version: require('./package.json').version,
+      projectName: 'Your Project Name',
+      // buildTime is optional, defaults to current time
     })
   ]
 };
@@ -41,7 +38,7 @@ export default {
   plugins: [
     BuildInfoInjectorVitePlugin({
       version: '1.0.0',
-      projectName: '你的项目名',
+      projectName: 'Your Project Name',
     })
   ]
 };
@@ -56,16 +53,16 @@ export default {
   plugins: [
     BuildInfoInjectorRollupPlugin({
       version: '1.0.0',
-      projectName: '你的项目名',
+      projectName: 'Your Project Name',
     })
   ]
 };
 ```
 
-## 注入效果
+## Injection Effect
 
-构建后的 HTML `<head>` 标签内会自动插入：
+The following will be automatically inserted into the `<head>` tag of the built HTML:
 
 ```html
-<meta id="build-info" name="build-info" content="<!-- 项目名 v1.0.0 build:2024-06-13T07:00:00.000Z -->">
+<meta id="build-info" name="build-info" content="<!-- ProjectName v1.0.0 build:2024-06-13T07:00:00.000Z -->">
 ``` 
