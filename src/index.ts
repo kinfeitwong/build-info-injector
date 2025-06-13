@@ -20,7 +20,10 @@ function logBuildInfo(options: InjectOptions) {
   console.log(`[build-info] ${projectName} v${version} build:${buildTime}`);
 }
 
-// Webpack 4/5 插件
+// Webpack 4/5 插件（0依赖实现，直接处理输出目录下所有 HTML 文件）
+const fs = require('fs');
+const path = require('path');
+
 export class BuildInfoInjectorWebpackPlugin {
   private options: InjectOptions;
   constructor(options: InjectOptions = {}) {
@@ -32,20 +35,22 @@ export class BuildInfoInjectorWebpackPlugin {
     });
   }
   apply(compiler: any) {
-    const pluginName = 'BuildInfoInjectorWebpackPlugin';
-    compiler.hooks.compilation.tap(pluginName, (compilation: any) => {
-      const HtmlWebpackPlugin = (compiler.options.plugins || []).find((p: any) => p.constructor && p.constructor.name === 'HtmlWebpackPlugin');
-      if (HtmlWebpackPlugin) {
-        const hook = HtmlWebpackPlugin.constructor.getHooks(compilation).beforeEmit;
-        hook.tap(pluginName, (data: any) => {
-          data.html = injectBuildInfo(data.html, {
+    compiler.hooks.afterEmit.tap('BuildInfoInjectorWebpackPlugin', (compilation: any) => {
+      const outputPath = compiler.options.output?.path || compilation.outputOptions?.path;
+      if (!outputPath) return;
+      const files: string[] = fs.readdirSync(outputPath);
+      files.forEach((file: string) => {
+        if (file.endsWith('.html')) {
+          const filePath = path.join(outputPath, file);
+          let html = fs.readFileSync(filePath, 'utf-8');
+          html = injectBuildInfo(html, {
             version: this.options.version || compiler.options.version,
             projectName: this.options.projectName || compiler.options.name,
             buildTime: this.options.buildTime || new Date().toISOString(),
           });
-          return data;
-        });
-      }
+          fs.writeFileSync(filePath, html, 'utf-8');
+        }
+      });
     });
   }
 }
