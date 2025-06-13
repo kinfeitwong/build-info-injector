@@ -8,8 +8,9 @@ interface InjectOptions {
 function injectBuildInfo(html: string, options: InjectOptions): string {
   const { version, projectName, buildTime, tagId = 'build-info' } = options;
   const info = `<!-- ${projectName || ''} v${version || ''} build:${buildTime || ''} -->`;
+  const script = `<script>console.log('[build-info] ${projectName || ''} v${version || ''} build:${buildTime || ''}');</script>`;
   // 注入到 <head> 末尾
-  return html.replace(/<head(.*?)>/i, match => `${match}\n    <meta id="${tagId}" name="build-info" content="${info}">`);
+  return html.replace(/<head(.*?)>/i, match => `${match}\n    <meta id="${tagId}" name="build-info" content="${info}">\n    ${script}`);
 }
 
 function logBuildInfo(options: InjectOptions) {
