@@ -1,0 +1,19 @@
+{
+  "name": "build-info-injector",
+  "version": "1.0.0",
+  "description": "html version build-time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "html",
+    "version"
+  ],
+  "author": "kinfeitwong",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
