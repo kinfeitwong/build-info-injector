@@ -2,7 +2,7 @@
   "name": "build-info-injector",
   "version": "1.0.2",
   "description": "html version build-time",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kinfeitwong/build-info-injector"
