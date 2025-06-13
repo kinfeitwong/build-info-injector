@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new BuildInfoInjectorWebpackPlugin({
-      version: require('./package.json').version,
+      version: '1.0.0',
       projectName: '你的项目名',
       // buildTime 可不传，默认当前时间
     })
