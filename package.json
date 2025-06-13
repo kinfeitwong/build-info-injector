@@ -17,9 +17,10 @@
     "version"
   ],
   "author": "kinfeitwong",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0"
-  }
+  },
+  "homepage": "https://github.com/kinfeitwong/build-info-injector#readme"
 }
