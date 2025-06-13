@@ -15,7 +15,6 @@ npm install build-info-injector --save-dev
 ### Usage
 
 #### Webpack 4/5
-(Use with [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin))
 
 ```js
 const { BuildInfoInjectorWebpackPlugin } = require('build-info-injector');
@@ -86,7 +85,6 @@ npm install build-info-injector --save-dev
 ### 用法
 
 #### Webpack 4/5
-需配合 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 使用：
 
 ```js
 const { BuildInfoInjectorWebpackPlugin } = require('build-info-injector');
