@@ -1,6 +1,6 @@
 {
   "name": "build-info-injector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "html version build-time",
   "main": "index.js",
   "scripts": {
