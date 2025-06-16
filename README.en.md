@@ -1,6 +1,6 @@
 # build-info-injector
 
-A zero-dependency npm plugin that automatically injects version, build time, and project name information into all HTML files during build. Compatible with Webpack 4/5, Vite, and Rollup. Simple to configure and ready to use out of the box.
+A zero-dependency npm plugin that automatically injects version, build time, and project name information into all HTML files during build. Compatible with Webpack 4/5, Vite, and Rollup. Simple to configure.
 
 ## Installation
 
